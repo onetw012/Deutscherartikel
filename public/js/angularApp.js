@@ -6,6 +6,19 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.has = false;
 	$scope.suggestions = [];
 	$scope.clicked = false;
+	$scope.artikel = "";
+
+	$http({method: 'GET', url: '/art'}).
+		success(function(data){
+			$scope.suggestions = data;
+		});
+
+	$scope.addWort = function (artikel, wort) {
+		$http.post({ url: '/', data: {artikel: wort}})
+		.success(function(data, status, headers, config) {
+    		console.log(status);
+  		});
+	}
 
 	$scope.addArtikel = function(a, wort){
 		$scope.suggestions.push({
@@ -24,10 +37,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 		$scope.clicked = false;
 	};
 
-	$http({method: 'GET', url: '/art'}).
-		success(function(data){
-			$scope.suggestions = data;
-		});
+	
 
 
 }]);

@@ -18,5 +18,7 @@
     "gulp-ruby-sass": "^1.0.0-alpha.3",
     "tiny-lr": "^0.1.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.12.0"
+  }
 }

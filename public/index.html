@@ -21,7 +21,13 @@
 				<!-- artikel -->				
 				<section id="a-column" class="col-sx-4 col-md-4 col-sm-4">
 					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-show="has">der</div>
-					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-hide="has"><input id="userArtikel" type="text"/></div>
+					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-hide="has">
+
+						<input id="userArtikel" type="text" ng-model="artikel"/>
+
+						<button id="add-wort" class="btn btn-default" ng-click="addWort(artikel, wort)">+</button>
+
+					</div>
 					
 				</section>
 				<!-- end artikel -->
