@@ -1,0 +1,122 @@
+@import '../../public/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+
+
+/* overwrite class .well in bootstrap for using in footer */
+.well {
+	margin-bottom: 0px;
+}
+/* ______________________________________________________ */
+
+html, body, div, section, main {
+	height: 100%;	
+}
+
+@mixin tmedia ($query, $val){
+	@media ($query: $val) {
+		@content	
+	}
+};
+
+
+@mixin figure($width, $what_figure: 0, $multiplicator: 3) {
+	margin: auto;
+    position: absolute;
+	bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    overflow: auto;
+    @if $what_figure==1 {
+    	width: $width;
+		height:$width;
+		-webkit-border-radius: $width/2;
+		   -moz-border-radius: $width/2;
+		        border-radius: $width/2;
+	}@else if $what_figure==2{
+		width: $width;
+		height:round($width/$multiplicator);
+	}@else{
+		width: $width;
+		height:$width;
+	}
+};
+
+
+#a-column {	
+	background-color: orange;
+	@include tmedia (max-width, 640px) {
+		height:40%;
+	}
+}
+
+#w-column {	
+	background-color: black;
+	@include tmedia (max-width, 640px) {
+		height:40%;
+	}
+}
+
+#artikel{
+	font-size: 48px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #000;
+	@include figure(200px, 1);
+}
+
+#wort {
+	@include figure(400px, 10);
+	background-color: green;
+	input {
+		width: 400px;
+		font-size: 48px;
+		color: black;
+		text-align: center;
+		background-color: orange;
+	}
+	ul{
+		li{
+			display: block;
+			width: 400px;
+			background-color: #DDE0DA;
+			color: black;
+			padding-left: 10px;
+			font-size: 24px;
+			font-weight: bold; 
+			border-bottom: 1px solid black;
+		}
+	}
+}
+
+/* #typing {
+	@extend #wort;
+	font-size: 48px;
+	color: black;
+	text-align: center;
+} */
+
+%other-blocks {
+	height: 10%;
+	background-color: darken(white, 20%);
+}
+
+header {
+	@extend %other-blocks;
+}
+
+footer {
+	@extend %other-blocks;
+	position: absolute;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+}
+
+#userArtikel {
+	font-size: 48px;
+	color: black;
+	text-align: center;
+}
+
