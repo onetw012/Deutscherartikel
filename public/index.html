@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>SASS</title>
+		<title>den Artikel suchen</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body ng-app="artikel" ng-controller="MainCtrl">
@@ -9,7 +9,7 @@
 		<main class="container-fluid">	
 			<!-- header -->
 			<header class="navbar navbar-default navbar-fixed-top">
-				<div class="navbar-brand"> die ARTIKELN</div>
+				<div class="navbar-brand"> die ARTIKEL</div>
 				<div class="container">
 				
 				</div>
@@ -20,7 +20,7 @@
 			<div class="row">
 				<!-- artikel -->				
 				<section id="a-column" class="col-sx-4 col-md-4 col-sm-4">
-					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-show="has">der</div>
+					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-show="clicked">{{artikel}}</div>
 					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-hide="has">
 
 						<input id="userArtikel" type="text" ng-model="artikel"/>
@@ -37,7 +37,7 @@
 					<div id="wort">
 						<input id="typing" type="text" placeholder="Tipp den Wort..." ng-model="wort" ng-change="startTyping()"/>
 					<ul id="suggestion" class="list-unstyled" ng-show="wort && !clicked">
-						<li ng-repeat="suggestion in suggestions | filter:{wort:wort}" ng-click="showArtikel(suggestion.wort)">{{suggestion.wort}}</li>
+						<li ng-repeat="suggestion in box | filter:{wort:wort}" ng-click="showArtikel(suggestion.wort)">{{suggestion.wort}}</li>
 					</ul>
 					</div>	
 						
@@ -58,5 +58,6 @@
 		<!-- end footer -->
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="js/angularApp.js"></script>
+	<script src="js/controllers/mainCtrl.js"></script>
 	</body>
 </html>

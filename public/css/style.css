@@ -5669,7 +5669,7 @@ html, body, div, section, main {
   overflow: auto;
   width: 400px;
   height: 400px;
-  background-color: green; }
+  background-color: black; }
   #wort input {
     width: 400px;
     font-size: 48px;
@@ -5706,3 +5706,6 @@ footer {
   font-size: 48px;
   color: black;
   text-align: center; }
+
+#warning {
+  border: 2px solid red; }

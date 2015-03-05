@@ -6,6 +6,14 @@ var bodyParser = require('body-parser');
 var model = require('./models/Artikel');
 
 mongoose.connect('mongodb://localhost:27017/artikel');
+var db = mongoose.connection;
+
+db.on('error', function (err) {
+console.log('connection error', err);
+});
+db.once('open', function () {
+console.log('connected to mongoDB.');
+});
 
 app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,9 +25,18 @@ app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/public/index.html');
 });
 
-app.post('/:name', function(request, response){
-	console.log(request.body);
-	/*model.getModel.insert(request)*/
+app.post('/create', function(request, response){
+	/*console.log(request.body);*/
+	var neuerWort = new model.getModel(request.body);
+	neuerWort.save(function (err, data) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log('Saved ', data );
+		}
+	});
+
+ 	response.send('POST request to homepage');
 });
 
 app.get('/art', function(request, response){
@@ -28,5 +45,7 @@ app.get('/art', function(request, response){
 	});
 });
 
-app.listen(4000);
+app.listen(4000, function () {
+	console.log("Listening on port 4000 ...");
+});
 

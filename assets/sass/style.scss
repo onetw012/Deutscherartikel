@@ -68,7 +68,7 @@ html, body, div, section, main {
 
 #wort {
 	@include figure(400px, 10);
-	background-color: green;
+	background-color: black;
 	input {
 		width: 400px;
 		font-size: 48px;
@@ -120,3 +120,6 @@ footer {
 	text-align: center;
 }
 
+#warning {
+	border: 2px solid red;
+}
