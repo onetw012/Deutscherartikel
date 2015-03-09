@@ -1,5 +1,6 @@
 (function () {
-angular.module('artikel')
+	'use strict';
+	angular.module('artikel')
 	.controller('MainCtrl', ['$scope', '$http', 'filterFilter', function($scope, $http, filterFilter){
 
 		var vm = this;
@@ -22,32 +23,34 @@ angular.module('artikel')
 		/*_*/
 
 		$http({method: 'GET', url: '/art'})
-			.success(function(data){
-				$scope.box = data;
-			})
-			.error(function(err){
-				console.log("Can't load data!");
-			});
+		.success(function(data){
+			$scope.box = data;
+		})
+		.error(function(err){
+			console.log("Can't load data!");
+		});
 
 		function addWort (artikel, wort) {
-			wort = wort || "";
+			wort = $scope.trueWort(wort) || "";
 			artikel = artikel || "";
-			wort = wort.trim().toLowerCase();
-			wort = wort.charAt(0).toUpperCase() + wort.slice(1);
+			
 
-			if($scope.trueArtikel(artikel) && $scope.trueWort(wort)){
+			if($scope.trueArtikel(artikel) && wort){
 				$http({method: 'POST', url: '/create', data: {art: artikel, wort: wort}})
 				.success(function(data, status, headers, config) {
-	    			//console.log(headers);
-	    			$scope.box.push({art: artikel, wort: wort});
-	  			})
-	  			.error(function(data, status, headers, config) {
-	   				//console.log("ERROR!: " + data + status + headers + config);
-	  			});
-			} else if (!$scope.trueArtikel()){
-
+		    			//console.log(headers);
+		    			$scope.box.push({art: artikel, wort: wort});
+		    		})
+				.error(function(data, status, headers, config) {
+		   				//console.log("ERROR!: " + data + status + headers + config);
+		   			});
+				
+			} else if (!$scope.trueArtikel(artikel)){
+				console.log("Ein Artikel passiert nicht!");
+				alert("Ein Artikel passiert nicht!");
 			} else {
-
+				console.log("Ein Wort passiert nicht!");
+				alert("Ein Wort passiert nicht!");
 			}
 		}
 		
@@ -80,10 +83,18 @@ angular.module('artikel')
 		};
 
 		function trueWort (wort) {
-			return true;
+			wort = wort.trim().toLowerCase();
+			wort = wort.charAt(0).toUpperCase() + wort.slice(1);
+			var pattern = /^[A-Za-z]+$/;
+			if(pattern.test(wort)){
+				return wort;
+			} else {
+				return false;
+			}
+			
 		};
 		
 
 
-}]);
+	}]);
 })();
