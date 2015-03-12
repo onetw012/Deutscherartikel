@@ -3,6 +3,8 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
+var port = Number(process.env.PORT || 3000);
+
 var model = require('./models/Artikel');
 
 mongoose.connect('mongodb://localhost:27017/artikel');
@@ -45,7 +47,7 @@ app.get('/art', function(request, response){
 	});
 });
 
-app.listen(4000, function () {
-	console.log("Listening on port 4000 ...");
+app.listen(port, function () {
+	console.log("Listening on port "+port+" ...");
 });
 

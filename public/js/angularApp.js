@@ -1,3 +1,6 @@
 (function (argument) {	
-	angular.module('artikel', []);
+	angular.module('artikel', [])
+	.config(function($logProvider){
+    	$logProvider.debugEnabled(true);
+	});
 })();
