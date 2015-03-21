@@ -2,13 +2,17 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-app.disable('x-poewred-by');
+app.disable('x-powered-by');
 
 var port = Number(process.env.PORT || 3000);
+var uristring =
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
+'mongodb://localhost/artikel';
 
 var model = require('./models/Artikel');
 
-mongoose.connect('mongodb://localhost:27017/artikel');
+mongoose.connect(uristring);
 var db = mongoose.connection;
 
 db.on('error', function (err) {
