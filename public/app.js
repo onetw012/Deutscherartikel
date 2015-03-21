@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+app.disable('x-poewred-by');
 
 var port = Number(process.env.PORT || 3000);
 
