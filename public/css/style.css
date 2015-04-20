@@ -5705,7 +5705,8 @@ footer {
 #userArtikel {
   font-size: 48px;
   color: black;
-  text-align: center; }
+  text-align: center;
+  max-width: 150px; }
 
 #warning {
   border: 2px solid red; }

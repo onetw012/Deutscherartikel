@@ -3,24 +3,39 @@
 	angular.module('artikel')
 	.controller('MainCtrl', ['$scope', '$http', 'filterFilter', function($scope, $http, filterFilter){
 
-		var vm = this;
+		var vm = this,
+		Model = (function() {
+			/*		constructor		*/
+			function Model () {
+				
+			}
 
-		/*variables*/
-		$scope.wort = "";
-		$scope.artikel = "";
-		$scope.box = [];
-		$scope.suggestions = [];
-		$scope.has = false;
-		$scope.clicked = false;	
-		/*_*/	
+			/*		variables		*/
+			wort: "";
+			artikel: "";
+			box: [];
+			suggestions: [];
+			has: false;
+			clicked: false;	
+			/*----------------------*/
 
-		/*functions*/
-		$scope.addWort = addWort;
-		$scope.showArtikel = showArtikel;
-		$scope.startTyping = startTyping;
-		$scope.trueArtikel = trueArtikel;
-		$scope.trueWort = trueWort;
-		/*_*/
+			/*		functions		*/
+			addWort: addWort;
+			showArtikel: showArtikel;
+			startTyping: startTyping;
+			trueArtikel: trueArtikel;
+			trueWort: trueWort;
+			/*----------------------*/
+
+			return this;
+		})();
+
+		$scope.model = new Model();
+
+		
+
+		
+
 
 		$http({method: 'GET', url: '/art'})
 		.success(function(data){

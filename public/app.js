@@ -1,19 +1,17 @@
-var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-app.disable('x-powered-by');
-
-var port = Number(process.env.PORT || 3000);
-var uristring =
-process.env.MONGOLAB_URI ||
-process.env.MONGOHQ_URL ||
-'mongodb://localhost/artikel';
-
-var model = require('./models/Artikel');
+var express = require('express'),
+	app = express(),
+	mongoose = require('mongoose'),
+	bodyParser = require('body-parser'),
+	port = Number(process.env.PORT || 3000),
+	uristring =
+		process.env.MONGOLAB_URI ||
+		process.env.MONGOHQ_URL ||
+		'mongodb://localhost/artikel',
+	model = require('./models/Artikel'),
+	db;
 
 mongoose.connect(uristring);
-var db = mongoose.connection;
+db = mongoose.connection;
 
 db.on('error', function (err) {
 console.log('connection error', err);
@@ -21,7 +19,7 @@ console.log('connection error', err);
 db.once('open', function () {
 console.log('connected to mongoDB.');
 });
-
+app.disable('x-powered-by');
 app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,6 +28,12 @@ app.use(bodyParser.json());
 
 app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/art', function(request, response){
+	model.getModel.find(function(err, data){
+		response.json(data);
+	});
 });
 
 app.post('/create', function(request, response){
@@ -42,15 +46,9 @@ app.post('/create', function(request, response){
 			console.log('Saved ', data );
 		}
 	});
-
  	response.send('POST request to homepage');
 });
 
-app.get('/art', function(request, response){
-	model.getModel.find(function(err, data){
-		response.json(data);
-	});
-});
 
 app.listen(port, function () {
 	console.log("Listening on port "+port+" ...");
