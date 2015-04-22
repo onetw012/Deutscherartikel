@@ -24,7 +24,7 @@
 					<!-- <artikelplatz clicked="{{clicked}}" artikel="{{artikel}}"></artikelplatz> -->
 					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-hide="model.has">
 
-						<input id="userArtikel" type="text" ng-model="model.artikel"/>
+						<input id="userArtikel" class="form-control" type="text" ng-model="model.artikel"/>
 
 						<button id="add-wort" class="btn btn-default" ng-click="addWort(model.artikel, model.wort)">+</button>
 
@@ -36,7 +36,7 @@
 				<!-- wort -->					
 				<section id="w-column" class="col-sx-8 col-md-8 col-sm-8">
 					<div id="wort">
-						<input id="typing" type="text" placeholder="Tipp den Wort..." ng-model="model.wort" ng-change="startTyping()"/>
+						<input id="typing" class="form-control" aria-describedby="sizing-addon1" type="text" placeholder="Tipp den Wort..." ng-model="model.wort" ng-change="startTyping()"/>
 					<ul id="suggestion" class="list-unstyled" ng-show="model.wort && !model.clicked">
 						<li ng-repeat="suggestion in model.box | filter:{wort:model.wort}" ng-click="showArtikel(suggestion.wort)">{{suggestion.wort}}</li>
 					</ul>
