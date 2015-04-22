@@ -20,13 +20,13 @@
 			<div class="row">
 				<!-- artikel -->				
 				<section id="a-column" class="col-sx-4 col-md-4 col-sm-4">
-					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-show="clicked">{{artikel}}</div>
+					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-show="model.clicked">{{model.artikel}}</div>
 					<!-- <artikelplatz clicked="{{clicked}}" artikel="{{artikel}}"></artikelplatz> -->
-					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-hide="has">
+					<div id="artikel" class="col-sx-2 col-sm-2 col-md-2" ng-hide="model.has">
 
-						<input id="userArtikel" type="text" ng-model="artikel"/>
+						<input id="userArtikel" type="text" ng-model="model.artikel"/>
 
-						<button id="add-wort" class="btn btn-default" ng-click="addWort(artikel, wort)">+</button>
+						<button id="add-wort" class="btn btn-default" ng-click="addWort(model.artikel, model.wort)">+</button>
 
 					</div>
 					
@@ -36,9 +36,9 @@
 				<!-- wort -->					
 				<section id="w-column" class="col-sx-8 col-md-8 col-sm-8">
 					<div id="wort">
-						<input id="typing" type="text" placeholder="Tipp den Wort..." ng-model="wort" ng-change="startTyping()"/>
-					<ul id="suggestion" class="list-unstyled" ng-show="wort && !clicked">
-						<li ng-repeat="suggestion in box | filter:{wort:wort}" ng-click="showArtikel(suggestion.wort)">{{suggestion.wort}}</li>
+						<input id="typing" type="text" placeholder="Tipp den Wort..." ng-model="model.wort" ng-change="startTyping()"/>
+					<ul id="suggestion" class="list-unstyled" ng-show="model.wort && !model.clicked">
+						<li ng-repeat="suggestion in model.box | filter:{wort:model.wort}" ng-click="showArtikel(suggestion.wort)">{{suggestion.wort}}</li>
 					</ul>
 					</div>	
 						
@@ -59,8 +59,10 @@
 		<!-- end footer -->
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="js/angularApp.js"></script>
+	<script src="js/services/Model.js"></script>
 	<script src="js/controllers/mainCtrl.js"></script>
 	<script src="js/directives/artikelDirective.js"></script>
 	<script src="js/directives/wortDirective.js"></script>
+
 	</body>
 </html>

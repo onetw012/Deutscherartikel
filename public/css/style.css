@@ -5646,13 +5646,14 @@ html, body, div, section, main {
   justify-content: center;
   align-items: center;
   background-color: #000;
+  overflow: hidden;
   margin: auto;
   position: absolute;
   bottom: 0;
   left: 0;
   top: 0;
   right: 0;
-  overflow: auto;
+  overflow: hidden;
   width: 200px;
   height: 200px;
   -webkit-border-radius: 100px;
@@ -5666,7 +5667,7 @@ html, body, div, section, main {
   left: 0;
   top: 0;
   right: 0;
-  overflow: auto;
+  overflow: hidden;
   width: 400px;
   height: 400px;
   background-color: black; }
@@ -5706,7 +5707,10 @@ footer {
   font-size: 48px;
   color: black;
   text-align: center;
-  max-width: 150px; }
+  max-width: 140px; }
+
+#add-wort {
+  margin-left: 5px; }
 
 #warning {
   border: 2px solid red; }

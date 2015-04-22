@@ -1,66 +1,29 @@
 (function () {
 	'use strict';
 	angular.module('artikel')
-	.controller('MainCtrl', ['$scope', '$http', 'filterFilter', function($scope, $http, filterFilter){
+	.controller('MainCtrl', ['$http', '$scope', 'WortModel', 'filterFilter',
+		function($http, $scope, WortModel, filterFilter){
+		$scope.model = WortModel.model;
 
-		var vm = this,
-		Model = (function() {
-			/*		constructor		*/
-			function Model () {
-				
-			}
-
-			/*		variables		*/
-			wort: "";
-			artikel: "";
-			box: [];
-			suggestions: [];
-			has: false;
-			clicked: false;	
-			/*----------------------*/
-
-			/*		functions		*/
-			addWort: addWort;
-			showArtikel: showArtikel;
-			startTyping: startTyping;
-			trueArtikel: trueArtikel;
-			trueWort: trueWort;
-			/*----------------------*/
-
-			return this;
-		})();
-
-		$scope.model = new Model();
-
-		
-
-		
-
-
-		$http({method: 'GET', url: '/art'})
-		.success(function(data){
-			$scope.box = data;
-		})
-		.error(function(err){
-			console.log("Can't load data!");
-		});
+		$scope.addWort = addWort;
+		$scope.showArtikel = showArtikel;
+		$scope.startTyping = startTyping;
 
 		function addWort (artikel, wort) {
-			wort = $scope.trueWort(wort) || "";
+			wort = _trueWort(wort) || "";
 			artikel = artikel || "";
-			
-
-			if($scope.trueArtikel(artikel) && wort){
+			if(_trueArtikel(artikel) && wort){
+			// make POST request
 				$http({method: 'POST', url: '/create', data: {art: artikel, wort: wort}})
 				.success(function(data, status, headers, config) {
-		    			//console.log(headers);
-		    			$scope.box.push({art: artikel, wort: wort});
-		    		})
+						//console.log(headers);
+						$scope.model.box.push({art: artikel, wort: wort});
+					})
 				.error(function(data, status, headers, config) {
-		   				//console.log("ERROR!: " + data + status + headers + config);
-		   			});
-				
-			} else if (!$scope.trueArtikel(artikel)){
+						//console.log("ERROR!: " + data + status + headers + config);
+					});
+			//------------------
+			} else if (!_trueArtikel(artikel)){
 				console.log("Ein Artikel passiert nicht!");
 				alert("Ein Artikel passiert nicht!");
 			} else {
@@ -69,44 +32,34 @@
 			}
 		}
 		
-
 		function showArtikel (wort) {
-			$scope.wort = wort;	
-			$scope.suggestions.forEach(function (obj) {
-				if(obj.wort === $scope.wort) {
-					$scope.artikel = obj.art;
+			$scope.model.wort = wort;	
+			$scope.model.suggestions.forEach(function (obj) {
+				if(obj.wort === $scope.model.wort) {
+					$scope.model.artikel = obj.art;
 					return true;
 				}
 			});
-			//console.log($scope.suggestions);
-			$scope.has = true;		
-			$scope.clicked = true;
+			//console.log($scope.model.suggestions);
+			$scope.model.has = true;		
+			$scope.model.clicked = true;
 		}
 
 		function startTyping () {
-			$scope.clicked = false;
-			$scope.has = false;
-			$scope.suggestions = filterFilter($scope.box, {wort: $scope.wort});		
+			$scope.model.clicked = false;
+			$scope.model.has = false;
+			$scope.model.suggestions = filterFilter($scope.model.box, {wort: $scope.model.wort});		
 		};
 
-		function trueArtikel (artikel) {
-			if (artikel === "der" || artikel === "das" || artikel === "die"){
-				return true;
-			} else {
-				return false;
-			}
+		function _trueArtikel (artikel) {
+			return (artikel === "der" || artikel === "das" || artikel === "die") ? true : false;
 		};
 
-		function trueWort (wort) {
+		function _trueWort (wort) {
 			wort = wort.trim().toLowerCase();
 			wort = wort.charAt(0).toUpperCase() + wort.slice(1);
 			var pattern = /^[A-Za-z]+$/;
-			if(pattern.test(wort)){
-				return wort;
-			} else {
-				return false;
-			}
-			
+			return (pattern.test(wort)) ? wort : false;
 		};
 		
 
