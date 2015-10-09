@@ -7,7 +7,7 @@ var express = require('express'),
 		process.env.MONGOLAB_URI ||
 		process.env.MONGOHQ_URL ||
 		'mongodb://localhost/artikel',
-	model = require('./models/Artikel'),
+	model = require('./app/models/Artikel'),
 	db;
 
 mongoose.connect(uristring);

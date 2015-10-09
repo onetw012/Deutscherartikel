@@ -5634,10 +5634,8 @@ html, body, div, section, main {
       height: 40%; } }
 
 #w-column {
-  background-color: black; }
-  @media (max-width: 640px) {
-    #w-column {
-      height: 40%; } }
+  background-color: black;
+  padding-top: 10%; }
 
 #artikel {
   font-size: 48px;
@@ -5646,14 +5644,13 @@ html, body, div, section, main {
   justify-content: center;
   align-items: center;
   background-color: #000;
-  overflow: hidden;
   margin: auto;
   position: absolute;
   bottom: 0;
   left: 0;
   top: 0;
   right: 0;
-  overflow: hidden;
+  overflow: auto;
   width: 200px;
   height: 200px;
   -webkit-border-radius: 100px;
@@ -5661,26 +5658,17 @@ html, body, div, section, main {
   border-radius: 100px; }
 
 #wort {
-  margin: auto;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  top: 0;
-  right: 0;
-  overflow: hidden;
-  width: 400px;
-  height: 400px;
-  background-color: black; }
+  background-color: black;
+  margin: 0 15%; }
   #wort input {
-    width: 400px;
-    height: 80px;
-    font-size: 48px;
+    width: 100%;
+    font-size: 24px;
     color: black;
     text-align: center;
     background-color: orange; }
   #wort ul li {
     display: block;
-    width: 400px;
+    width: 100%;
     background-color: #DDE0DA;
     color: black;
     padding-left: 10px;
@@ -5705,14 +5693,17 @@ footer {
   width: 100%; }
 
 #userArtikel {
-  font-size: 48px;
-  height: 80px;
+  font-size: 24px;
   color: black;
   text-align: center;
-  max-width: 140px; }
-
-#add-wort {
-  margin-left: 5px; }
+  margin-right: 1px; }
 
 #warning {
   border: 2px solid red; }
+
+@media screen and (max-width: 640px) {
+  #artikel {
+    height: 100px; } }
+@media screen and (max-width: 480px) {
+  #artikel {
+    height: 80px; } }
