@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 var config = {
     sassPath: './assets/sass',
     cssPath: './public/css',
-    bowerDir: './public/bower_components'
+    bowerDir: './bower_components'
 }
 
 /*gulp.task('express', function() {
