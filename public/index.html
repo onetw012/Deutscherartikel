@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>den Artikel suchen</title>
+		<meta name="description" content="deutsche artikel">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
 		<link rel="stylesheet" type="text/css" href="public/css/style.css">
 	</head>
 	<body ng-app="artikel" ng-controller="MainCtrl">
@@ -39,7 +44,7 @@
 						<input id="typing" class="form-control" aria-describedby="sizing-addon1" type="text" placeholder="schreib den Wort..." ng-model="model.wort" ng-change="startTyping()"/>
 
 					<ul id="suggestion" class="list-unstyled" ng-show="model.wort && !model.clicked">
-						<li ng-repeat="suggestion in model.box | filter:{wort:model.wort}" ng-click="showArtikel(suggestion.wort)">{{suggestion.wort}}</li>
+						<li class="suggestion-item" ng-repeat="suggestion in model.box | filter:{wort:model.wort}" ng-click="showArtikel(suggestion.wort)">{{suggestion.wort}}</li>
 					</ul>
 					</div>	
 						

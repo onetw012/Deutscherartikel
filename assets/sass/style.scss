@@ -44,9 +44,6 @@ html, body, div, section, main {
 
 #a-column {	
 	background-color: orange;
-	@include tmedia (max-width, 640px) {
-		height:40%;
-	}
 }
 
 #w-column {	
@@ -74,8 +71,8 @@ html, body, div, section, main {
 		text-align: center;
 		background-color: orange;
 	}
-	ul{
-		li{
+	#suggestion {
+		.suggestion-item {
 			display: block;
 			width: 100%;
 			background-color: #DDE0DA;
@@ -125,9 +122,23 @@ footer {
 
 @media screen and (max-width: 640px) {
 	#wort {
-		
+		#suggestion {
+			.suggestion-item {
+				display: block;
+				width: 100%;
+				background-color: #DDE0DA;
+				color: black;
+				padding-left: 10px;
+				font-size: 16px;
+				font-weight: bold; 
+				border-bottom: 1px solid black;
+			}
+		}
 	}
 
+	#a-column {
+		height: 40%;
+	}
 	#artikel {
 		height: 100px;
 	}
