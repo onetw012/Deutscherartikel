@@ -24,7 +24,11 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+app.get('/test', function (request, response) {
+	model.getModel.find(function (err, data) {
+		response.json(data);
+	});
+});
 
 app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/public/index.html');
