@@ -5867,6 +5867,7 @@ footer {
   width: 100%; }
 
 #userArtikel {
+  width: 65%;
   font-size: 24px;
   color: black;
   text-align: center;
