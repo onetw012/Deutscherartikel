@@ -43,6 +43,7 @@
 			});
 			$scope.model.has = true;		
 			$scope.model.clicked = true;
+			
 		}
 
 		function startTyping () {
