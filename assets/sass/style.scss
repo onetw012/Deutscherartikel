@@ -128,6 +128,9 @@ footer {
 }
 
 @media screen and (max-width: 640px) {
+	header, footer {
+		display: none;
+	}
 	#wort {
 		#suggestion {
 			.suggestion-item {
