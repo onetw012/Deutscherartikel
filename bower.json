@@ -17,5 +17,8 @@
     "AngularJS-Toaster": "angularjs-toaster#~0.4.15",
     "bootstrap-sass-official": "~3.3.3",
     "fontawesome": "~4.3.0"
+  },
+  "resolutions": {
+    "angular": "~1.3.13"
   }
 }
