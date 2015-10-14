@@ -22,9 +22,10 @@
     "tiny-lr": "^0.1.5"
   },
   "dependencies": {
-    "bower": "*",
     "body-parser": "*",
+    "bower": "*",
     "express": "*",
-    "mongoose": "4"
+    "mongoose": "4",
+    "serve-favicon": "^2.3.0"
   }
 }

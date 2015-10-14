@@ -120,6 +120,13 @@ footer {
 	border: 2px solid red;
 }
 
+.toast-top-full-width {
+	max-width: 200px;
+	max-height: 80px;
+	text-align: center;
+	overflow: hidden;
+}
+
 @media screen and (max-width: 640px) {
 	#wort {
 		#suggestion {

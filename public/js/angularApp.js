@@ -1,6 +1,7 @@
-(function (argument) {	
-	angular.module('artikel', [])
-	.config(function($logProvider){
-    	$logProvider.debugEnabled(true);
-	});
+;(function () {
+
+	'use strict';
+
+	angular.module('artikel', ['toaster', 'ngAnimate']);
+
 })();

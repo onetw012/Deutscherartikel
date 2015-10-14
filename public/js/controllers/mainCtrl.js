@@ -1,8 +1,8 @@
 (function () {
 	'use strict';
 	angular.module('artikel')
-	.controller('MainCtrl', ['$http', '$scope', 'WortModel', 'filterFilter',
-		function($http, $scope, WortModel, filterFilter){
+	.controller('MainCtrl', ['sender', '$scope', 'WortModel', 'filterFilter', 'toaster',
+		function(sender, $scope, WortModel, filterFilter, toaster){
 		$scope.model = WortModel.model;
 
 		$scope.addWort = addWort;
@@ -13,24 +13,23 @@
 			wort = _trueWort(wort) || "";
 			artikel = artikel || "";
 			if(_trueArtikel(artikel) && wort){
-				$http({method: 'POST', url: '/create', data: {art: artikel, wort: wort}})
-				.success(function(data) {
-						if (data !== "Der Wort ist schon im Woerterbuch") {
-							$scope.model.box.push({art: artikel, wort: wort});
-						} else {
-
-						}									
-					})
-				.error(function(error) {
-
-					});
+				sender.sendWort({art: artikel, wort: wort})
+				.then(function (data) {
+					if (!data.exist) {
+						toaster.pop('success', "Der Wort ist hinzugefuegt worden", undefined, 2000);
+						$scope.model.box.push({art: artikel, wort: wort});
+					} else {
+						toaster.pop('error', "Der Wort ist schon im Woerterbuch", undefined, 2000);
+					}
+				})
+				.catch(function (err) {
+					toaster.pop('error', "Der Wort ist nicht hinzugefuegt worden", undefined, 2000);
+				});
 			//------------------
 			} else if (!_trueArtikel(artikel)){
-				console.log("Ein Artikel passiert nicht!");
-				alert("Ein Artikel passiert nicht!");
+				toaster.pop('error', "Ein Artikel passiert nicht!", undefined, 2000);
 			} else {
-				console.log("Ein Wort passiert nicht!");
-				alert("Ein Wort passiert nicht!");
+				toaster.pop('error', "Ein Wort passiert nicht!", undefined, 2000);
 			}
 		}
 		
@@ -62,8 +61,5 @@
 			var pattern = /^[A-Za-z]+$/;
 			return (pattern.test(wort)) ? wort : false;
 		};
-		
-
-
 	}]);
 })();

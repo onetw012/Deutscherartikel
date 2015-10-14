@@ -22,7 +22,6 @@
 			console.log("Can't load data!" + "\n" + "ERROR!: " + err);
 		});
 
-
 		this.update = function () {
 			$timeout(function() {$rootScope.$broadcast('update', vm.model.box);});
 		};

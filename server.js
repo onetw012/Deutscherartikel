@@ -2,6 +2,7 @@ var express = require('express'),
 	app = express(),
 	mongoose = require('mongoose'),
 	bodyParser = require('body-parser'),
+	favicon = require('serve-favicon'),
 	port = Number(process.env.PORT || 3000),
 	uristring =
 		process.env.MONGOLAB_URI ||
@@ -23,6 +24,7 @@ app.disable('x-powered-by');
 app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
 app.get('/test', function (request, response) {
 	response.send({art: 'der'});
@@ -49,9 +51,9 @@ app.post('/create', function(request, response){
 	query.findOne(function (err, exist) {
 	  if (err);
 	  if (exist) {
-	  	console.log("Schon in DB");
-	  	response.send('Der Wort ist schon im Woerterbuch');
+	  	response.send({exist: true});
 	  } else {
+	  	//add new word if if doesn't exist
 		neuerWort.save(function (err, data) {
 			if (err) {
 				response.send(err);
