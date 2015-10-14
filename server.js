@@ -43,16 +43,26 @@ app.get('/art', function(request, response){
 });
 
 app.post('/create', function(request, response){
-	/*console.log(request.body);*/
 	var neuerWort = new model(request.body);
-	neuerWort.save(function (err, data) {
-		if (err) {
-			response.send(err);
-		} else {
-			console.log('Saved ', data );
-			response.send('Saved' + data);
-		}
+	//check if new word doesnt't exist
+	var query = model.where({ wort: neuerWort.wort });
+	query.findOne(function (err, exist) {
+	  if (err);
+	  if (exist) {
+	  	console.log("Schon in DB");
+	  	response.send('Der Wort ist schon im Woerterbuch');
+	  } else {
+		neuerWort.save(function (err, data) {
+			if (err) {
+				response.send(err);
+			} else {
+				response.send('Saved' + data);
+			}
+		});  	
+	  }
 	});
+
+	
  	
 });
 

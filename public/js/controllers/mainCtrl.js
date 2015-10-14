@@ -14,8 +14,12 @@
 			artikel = artikel || "";
 			if(_trueArtikel(artikel) && wort){
 				$http({method: 'POST', url: '/create', data: {art: artikel, wort: wort}})
-				.success(function(data) {				
-						$scope.model.box.push({art: artikel, wort: wort});
+				.success(function(data) {
+						if (data !== "Der Wort ist schon im Woerterbuch") {
+							$scope.model.box.push({art: artikel, wort: wort});
+						} else {
+
+						}									
 					})
 				.error(function(error) {
 
