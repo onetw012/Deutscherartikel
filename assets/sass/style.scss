@@ -54,6 +54,7 @@ html, body, div, section, main {
 #artikel{
 	font-size: 48px;
 	color: white;
+	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -131,6 +132,7 @@ footer {
 		font-size: 24px;
 		width: 35px;
 		padding: 0 5px;
+		z-index: 9999;
 		background-color: transparent;
 		color: black;
 		cursor: pointer;
