@@ -5850,12 +5850,6 @@ html, body, div, section, main {
     font-weight: bold;
     border-bottom: 1px solid black; }
 
-/* #typing {
-	@extend #wort;
-	font-size: 48px;
-	color: black;
-	text-align: center;
-} */
 header, footer {
   height: 10%;
   background-color: #cccccc; }
@@ -5867,6 +5861,7 @@ footer {
   width: 100%; }
 
 #userArtikel {
+  display: inline-block;
   width: 65%;
   font-size: 24px;
   color: black;
@@ -5876,6 +5871,9 @@ footer {
 #warning {
   border: 2px solid red; }
 
+#add-wort {
+  display: inline-block; }
+
 .reset-button {
   width: 0;
   height: 0;
@@ -5883,10 +5881,10 @@ footer {
   .reset-button:after {
     content: "X";
     position: absolute;
-    margin-left: -25px;
+    margin-left: -35px;
     font-size: 24px;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    padding: 0 5px;
     background-color: transparent;
     color: black;
     cursor: pointer; }
