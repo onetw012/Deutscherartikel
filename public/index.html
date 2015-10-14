@@ -46,16 +46,12 @@
 						<input id="typing" class="form-control" aria-describedby="sizing-addon1" type="text" placeholder="schreib den Wort..." ng-model="model.wort" ng-change="startTyping()"/>
 
 					<ul id="suggestion" class="list-unstyled" ng-show="model.wort && !model.clicked">
-						<li class="suggestion-item" ng-repeat="suggestion in model.box | filter:{wort:model.wort}" ng-click="showArtikel(suggestion.wort)" scrollto="body">{{suggestion.wort}}</li>
+						<li class="suggestion-item" ng-repeat="suggestion in model.box | filter:{wort:model.wort}" ng-click="showArtikel(suggestion.wort)" scroll-on-click>{{suggestion.wort}}</li>
 					</ul>
 					</div>	
 						
-				</section>
-
-						
-				
+				</section>		
 				<!-- end wort -->
-
 			</div>
 			<!-- end main content -->
 		</main>
@@ -65,15 +61,16 @@
 			
 		</footer>
 		<!-- end footer -->
+		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="/bower_components/angular/angular.min.js"></script>
 	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
 	<script src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
-	<script src="/bower_components/angular-scrollto/angular-scrollto.min.js"></script>
 
 	<script src="/public/js/angularApp.js"></script>
 	<script src="/public/js/services/Model.js"></script>
 	<script src="/public/js/services/Sender.js"></script>
 	<script src="/public/js/controllers/mainCtrl.js"></script>
+	<script src="/public/js/directives/scrollOnClick.js"></script>
 	<script src="/public/js/directives/artikelDirective.js"></script>
 	<script src="/public/js/directives/wortDirective.js"></script>
 
