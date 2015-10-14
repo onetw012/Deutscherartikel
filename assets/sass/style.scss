@@ -65,7 +65,8 @@ html, body, div, section, main {
 	background-color: black;
 	margin: 0 15%;
 	input {
-		width: 100%;
+		width: 95%;
+		display: inline-block;
 		font-size: 24px;
 		color: black;
 		text-align: center;
@@ -118,6 +119,23 @@ footer {
 
 #warning {
 	border: 2px solid red;
+}
+
+.reset-button {
+	width: 0;
+	height: 0;
+	position: relative;
+	&:after {
+		content: "X";
+		position: absolute;
+		margin-left: -25px;
+		font-size: 24px;
+		width: 25px;
+		height: 25px;
+		background-color: transparent;
+		color: black;
+		cursor: pointer;
+	}
 }
 
 .toast-top-full-width {

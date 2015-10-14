@@ -8,6 +8,7 @@
 		$scope.addWort = addWort;
 		$scope.showArtikel = showArtikel;
 		$scope.startTyping = startTyping;
+		$scope.reset = reset;
 
 		function addWort (artikel, wort) {
 			wort = _trueWort(wort) || "";
@@ -43,7 +44,7 @@
 			});
 			$scope.model.has = true;		
 			$scope.model.clicked = true;
-			
+
 		}
 
 		function startTyping () {
@@ -51,6 +52,13 @@
 			$scope.model.has = false;
 			$scope.model.suggestions = filterFilter($scope.model.box, {wort: $scope.model.wort});		
 		};
+
+		function reset () {
+			$scope.model.clicked = false;
+			$scope.model.has = false;
+			$scope.model.wort = "";
+			$scope.model.artikel = "";
+		}
 
 		function _trueArtikel (artikel) {
 			return (artikel === "der" || artikel === "das" || artikel === "die") ? true : false;
