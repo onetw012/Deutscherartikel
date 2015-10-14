@@ -5,4 +5,4 @@ var PostSchema = new mongoose.Schema({
   wort: String
 });
 
-module.exports.getModel = mongoose.model('art', PostSchema);
+module.exports = mongoose.model('arts', PostSchema);

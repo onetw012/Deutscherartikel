@@ -25,9 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/test', function (request, response) {
-	model.getModel.find(function (err, data) {
-		response.json(data);
-	});
+	response.send({art: 'der'});
 });
 
 app.get('/', function (request, response) {
@@ -35,22 +33,27 @@ app.get('/', function (request, response) {
 });
 
 app.get('/art', function(request, response){
-	model.getModel.find(function(err, data){
-		response.json(data);
+	model.find(function(err, data){
+		if (err) {
+			response.send(err);
+		} else {
+			response.send(data);
+		}		
 	});
 });
 
 app.post('/create', function(request, response){
 	/*console.log(request.body);*/
-	var neuerWort = new model.getModel(request.body);
+	var neuerWort = new model(request.body);
 	neuerWort.save(function (err, data) {
 		if (err) {
-			console.log(err);
+			response.send(err);
 		} else {
 			console.log('Saved ', data );
+			response.send('Saved' + data);
 		}
 	});
- 	response.send('POST request to homepage');
+ 	
 });
 
 

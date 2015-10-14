@@ -6,7 +6,6 @@
 
 		var vm = this;
 		this.model = {
-			/*		variables		*/
 			wort: "",
 			artikel: "",
 			box: [],
@@ -27,8 +26,6 @@
 		this.update = function () {
 			$timeout(function() {$rootScope.$broadcast('update', vm.model.box);});
 		};
-
-
 
 		return this;
 

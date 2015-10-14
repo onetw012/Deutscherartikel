@@ -13,14 +13,12 @@
 			wort = _trueWort(wort) || "";
 			artikel = artikel || "";
 			if(_trueArtikel(artikel) && wort){
-			// make POST request
 				$http({method: 'POST', url: '/create', data: {art: artikel, wort: wort}})
-				.success(function(data, status, headers, config) {
-						//console.log(headers);
+				.success(function(data) {				
 						$scope.model.box.push({art: artikel, wort: wort});
 					})
-				.error(function(data, status, headers, config) {
-						//console.log("ERROR!: " + data + status + headers + config);
+				.error(function(error) {
+
 					});
 			//------------------
 			} else if (!_trueArtikel(artikel)){
@@ -40,7 +38,6 @@
 					return true;
 				}
 			});
-			//console.log($scope.model.suggestions);
 			$scope.model.has = true;		
 			$scope.model.clicked = true;
 		}
